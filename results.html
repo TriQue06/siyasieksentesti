@@ -90,38 +90,38 @@
 
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 <script>
-    const maxScore = 16;
+    const maxScore = 20;
 
     // Puan aralıklarını ve karşılık gelen etiketleri basit bir nesnede tut
     const labels = {
         solsag: [
-            { min: 15, max: maxScore, label: "Klasik Liberalizm" },
-            { min: 4, max: 15, label: "Liberalizm" },
-            { min: -4, max: 4, label: "Karma Ekonomi" },
-            { min: -15, max: -4, label: "Sosyal Demokrasi" },
-            { min: -maxScore, max: -15, label: "Sosyalizm" }
+            { min: 18, max: maxScore, label: "Klasik Liberalizm" },
+            { min: 5, max: 18, label: "Liberalizm" },
+            { min: -5, max: 5, label: "Karma Ekonomi" },
+            { min: -18, max: -5, label: "Sosyal Demokrasi" },
+            { min: -maxScore, max: -18, label: "Sosyalizm" }
         ],
         libotok: [
-            { min: 15, max: maxScore, label: "Anarşizm" },
-            { min: 4, max: 15, label: "Özgürlükçülük" },
-            { min: -4, max: 4, label: "Hibrit Rejim" },
-            { min: -15, max: -4, label: "Otoriterlik" },
-            { min: -maxScore, max: -15, label: "Totalitarizm" }
+            { min: 18, max: maxScore, label: "Anarşizm" },
+            { min: 5, max: 18, label: "Özgürlükçülük" },
+            { min: -5, max: 5, label: "Hibrit Rejim" },
+            { min: -18, max: -5, label: "Otoriterlik" },
+            { min: -maxScore, max: -18, label: "Totalitarizm" }
         ],
         ilericimuhafazakar: [
-            { min: 10, max: maxScore, label: "Teokrasi" },
-            { min: -10, max: 10, label: "Laiklik" },
-            { min: -maxScore, max: -10, label: "Din Karşıtlığı (Antiteist)" }
+            { min: 12, max: maxScore, label: "Teokrasi" },
+            { min: -12, max: 12, label: "Laiklik" },
+            { min: -maxScore, max: -12, label: "Din Karşıtlığı" }
         ],
         kurmil: [
-            { min: 10, max: maxScore, label: "Küreselcilik" },
-            { min: -10, max: 10, label: "Enternasyonalizm" },
-            { min: -maxScore, max: -10, label: "Milliyetçilik" }
+            { min: 12, max: maxScore, label: "Küreselcilik" },
+            { min: -12, max: 12, label: "Enternasyonalizm" },
+            { min: -maxScore, max: -12, label: "Milliyetçilik" }
         ],
         unifed: [
-            { min: 10, max: maxScore, label: "Konfederasyonculuk" },
-            { min: -10, max: 10, label: "Adem-i Merkeziyetçilik" },
-            { min: -maxScore, max: -10, label: "Ünitercilik" }
+            { min: 12, max: maxScore, label: "Konfederasyonculuk" },
+            { min: -12, max: 12, label: "Adem-i Merkeziyetçilik" },
+            { min: -maxScore, max: -12, label: "Ünitercilik" }
         ]
     };
 
@@ -202,21 +202,21 @@
     }
 
     const partyScores = [
-        { name: 'Adalet ve Kalkınma Partisi', solsag: 0, libotok: -12, ilericimuhafazakar: 12, kurmil: -12, unifed: 4, color: '#f8991d' },
-        { name: 'Milliyetçi Hareket Partisi', solsag: 0, libotok: -12, ilericimuhafazakar: 12, kurmil: -16, unifed: 4, color: '#8e1c4b' },
-        { name: 'Büyük Birlik Partisi', solsag: 0, libotok: -12, ilericimuhafazakar: 12, kurmil: -16, unifed: -4, color: '#ea2228' },
-        { name: 'Hür Dava Partisi', solsag: 8, libotok: -12, ilericimuhafazakar: 16, kurmil: -8, unifed: 16, color: '#00953b' },
-        { name: 'Cumhuriyet Halk Partisi', solsag: -4, libotok: 12, ilericimuhafazakar: -12, kurmil: 4, unifed: -12, color: '#e30613' },
-        { name: 'İYİ Parti', solsag: 8, libotok: 8, ilericimuhafazakar: -8, kurmil: 0, unifed: -12, color: '#3cb4e5' },
-        { name: 'Zafer Partisi', solsag: 0, libotok: 4, ilericimuhafazakar: -4, kurmil: -8, unifed: -16, color: '#414042' },
-        { name: 'Halkların Eşitlik ve Demokrasi Partisi', solsag: -8, libotok: 12, ilericimuhafazakar: -12, kurmil: 12, unifed: 16, color: '#773e90' },
-        { name: 'Türkiye İşçi Partisi', solsag: -12, libotok: 12, ilericimuhafazakar: -16, kurmil: 8, unifed: 12, color: '#ad1766' },
-        { name: 'Yeniden Refah Partisi', solsag: 0, libotok: -8, ilericimuhafazakar: 16, kurmil: -16, unifed: -4, color: '#467d18' },
-        { name: 'Anahtar Parti', solsag: 4, libotok: -4, ilericimuhafazakar: 12, kurmil: -8, unifed: -12, color: '#002157' },
-        { name: 'Demokrasi ve Atılım Partisi', solsag: 12, libotok: 12, ilericimuhafazakar: 0, kurmil: 12, unifed: 0, color: '#0069a7' },
-        { name: 'Gelecek Partisi', solsag: 12, libotok: 8, ilericimuhafazakar: 4, kurmil: 8, unifed: -8, color: '#0d6e4a' },
-        { name: 'Saadet Partisi', solsag: 0, libotok: -4, ilericimuhafazakar: 12, kurmil: -16, unifed: -4, color: '#c16d4f' },
-        { name: 'Bağımsız Türkiye Partisi', solsag: 0, libotok: 0, ilericimuhafazakar: 8, kurmil: -12, unifed: -16, color: '#c80008' }
+        { name: 'Adalet ve Kalkınma Partisi', solsag: 0, libotok: -15, ilericimuhafazakar: 15, kurmil: -15, unifed: 5, color: '#f8991d' },
+        { name: 'Milliyetçi Hareket Partisi', solsag: 0, libotok: -15, ilericimuhafazakar: 15, kurmil: -20, unifed: 5, color: '#8e1c4b' },
+        { name: 'Büyük Birlik Partisi', solsag: 0, libotok: -15, ilericimuhafazakar: 15, kurmil: -20, unifed: -5, color: '#ea2228' },
+        { name: 'Hür Dava Partisi', solsag: 10, libotok: -15, ilericimuhafazakar: 20, kurmil: -10, unifed: 20, color: '#00953b' },
+        { name: 'Cumhuriyet Halk Partisi', solsag: -5, libotok: 15, ilericimuhafazakar: -15, kurmil: 5, unifed: -15, color: '#e30613' },
+        { name: 'İYİ Parti', solsag: 10, libotok: 10, ilericimuhafazakar: -10, kurmil: 0, unifed: -15, color: '#3cb4e5' },
+        { name: 'Zafer Partisi', solsag: 0, libotok: 5, ilericimuhafazakar: -5, kurmil: -10, unifed: -20, color: '#414042' },
+        { name: 'Halkların Eşitlik ve Demokrasi Partisi', solsag: -10, libotok: 15, ilericimuhafazakar: -15, kurmil: 20, unifed: 20, color: '#773e90' },
+        { name: 'Türkiye İşçi Partisi', solsag: -15, libotok: 15, ilericimuhafazakar: -20, kurmil: 20, unifed: 15, color: '#ad1766' },
+        { name: 'Yeniden Refah Partisi', solsag: 0, libotok: -10, ilericimuhafazakar: 20, kurmil: -20, unifed: -5, color: '#467d18' },
+        { name: 'Anahtar Parti', solsag: 5, libotok: -5, ilericimuhafazakar: 15, kurmil: -10, unifed: -15, color: '#002157' },
+        { name: 'Demokrasi ve Atılım Partisi', solsag: 15, libotok: 15, ilericimuhafazakar: -5, kurmil: 15, unifed: 0, color: '#0069a7' },
+        { name: 'Gelecek Partisi', solsag: 15, libotok: 10, ilericimuhafazakar: 5, kurmil: 10, unifed: -10, color: '#0d6e4a' },
+        { name: 'Saadet Partisi', solsag: 0, libotok: -5, ilericimuhafazakar: 15, kurmil: -20, unifed: -5, color: '#c16d4f' },
+        { name: 'Bağımsız Türkiye Partisi', solsag: 0, libotok: 0, ilericimuhafazakar: 10, kurmil: -15, unifed: -20, color: '#c80008' }
     ];
 
     function calculatePartyDistances(userScores) {

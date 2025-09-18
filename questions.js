@@ -20,6 +20,11 @@ const questions = [
         effect: -1
     },
     {
+        question: "Geliri yüksek olanlardan alınan vergilerle işsizlere işsizlik maaşı verilmelidir.",
+        axis: "solsag",
+        effect: -1
+    },
+    {
         question: "Şirket kurma ve girişim yapma kolaylaştırılmalıdır.",
         axis: "solsag",
         effect: 1
@@ -37,6 +42,16 @@ const questions = [
     {
         question: "Piyasalar ne kadar özgürse insanlar da o kadar özgürdür.",
         axis: "solsag",
+        effect: 1
+    },
+    {
+        question: "İşsizlikten önce enflasyon çözülmeli.",
+        axis: "solsag",
+        effect: 1
+    },
+    {
+        question: "Emniyet kemeri zorunlu olmamalıdır.",
+        axis: "libotok",
         effect: 1
     },
     {
@@ -65,6 +80,11 @@ const questions = [
         effect: -1
     },
     {
+        question: "Devlet yanlış haberin yayılmaması için önlem almalı ve cezai işlem uygulamalıdır.",
+        axis: "libotok",
+        effect: -1
+    },
+    {
         question: "Genel anlamda devlet doğru işleri yapar, konu ne olursa olsun.",
         axis: "libotok",
         effect: -1
@@ -81,6 +101,11 @@ const questions = [
     },
     {
         question: "Eşcinsel bireyler ve hakları vardır ve savunulmalıdır.",
+        axis: "ilericimuhafazakar",
+        effect: -1
+    },
+    {
+        question: "Tıbbi yardımlı intihar serbest olmalıdır.",
         axis: "ilericimuhafazakar",
         effect: -1
     },
@@ -110,6 +135,11 @@ const questions = [
         effect: 1
     },
     {
+        question: "Kadın; mirasın 1/3'ünü almalı, mahkeme şahitliği erkeğin yarısı kadar sayılmalıdır.",
+        axis: "ilericimuhafazakar",
+        effect: 1
+    },
+    {
         question: "Erkeklerin kolye/küpe gibi aksesuarları takması ya da kızların açık giyinmesi kesinlikle çok aşırıya kaçtı.",
         axis: "ilericimuhafazakar",
         effect: 1
@@ -130,6 +160,11 @@ const questions = [
         effect: 1
     },
     {
+        question: "Fazla devlet fazla savaşa sebep olur.",
+        axis: "kurmil",
+        effect: 1
+    },
+    {
         question: "Tüm dünya tek bir ülke olsaydı insanlık açısından her şey daha iyi olurdu.",
         axis: "kurmil",
         effect: 1
@@ -140,7 +175,12 @@ const questions = [
         effect: 1
     },
     {
-        question: "Uluslararası birlikler kültürümüzü zedeler, Türkiye uluslararası alanda tek başına yol almalıdır.",
+        question: "Uluslararası birlikler kültürümüzü zedeler.",
+        axis: "kurmil",
+        effect: -1
+    },
+    {
+        question: "Türkiye, yurt dışı teknolojilerini sınırlayıp kendi ürünlerinin kullanımını teşvik etmelidir.",
         axis: "kurmil",
         effect: -1
     },
@@ -165,6 +205,11 @@ const questions = [
         effect: 1
     },
     {
+        question: "Türkiye içinde bir Kürdistan kurulabilir.",
+        axis: "unifed",
+        effect: 1
+    },
+    {
         question: "Yerel yönetimlerin, daha fazla yetkiye sahip olması gereklidir.",
         axis: "unifed",
         effect: 1
@@ -181,6 +226,11 @@ const questions = [
     },
     {
         question: "Şehirler ve kültürler arası farklılıklar ne olursa olsun her yerde kurallar adaptasyon geçirmeden birebir uygulanmalıdır.",
+        axis: "unifed",
+        effect: -1
+    },
+    {
+        question: "Anayasanın ilk dört ve 66. maddesi güvencemizdir.",
         axis: "unifed",
         effect: -1
     },
