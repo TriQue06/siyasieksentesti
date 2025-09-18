@@ -1,0 +1,526 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 100vh;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    background-color: #34495e;
+    overflow-x: hidden; /* Yatay kaydırmayı tamamen engeller */
+}
+
+/* Arka plan görseli ve katmanı */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('your-background-image.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: blur(5px);
+    z-index: -2;
+}
+
+.background-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: -1;
+}
+
+/* Header stili */
+header h1 {
+    font-size: 3em;
+    font-weight: 700;
+    margin-bottom: 0.5em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+header p {
+    font-size: 1.2em;
+    max-width: 600px;
+    margin: 0 auto 2em;
+}
+
+/* Ana içerik kartı (index.html için) */
+.main-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.card {
+    background-color: rgba(44, 62, 80, 0.85);
+    padding: 3em 4em;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.card h2 {
+    font-size: 2em;
+    margin-top: 0;
+}
+
+.card p {
+    font-size: 1.1em;
+    margin-bottom: 2em;
+}
+
+/* Buton stilleri */
+.button-container {
+    display: flex;
+    gap: 2em;
+    justify-content: center;
+}
+
+.main-button {
+    text-decoration: none;
+    padding: 1em 2.5em;
+    border-radius: 50px;
+    font-size: 1.1em;
+    font-weight: 700;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border: none;
+}
+
+.main-button:hover {
+    transform: translateY(-5px);
+}
+
+.test-button {
+    background-color: #3498db;
+    color: #fff;
+}
+
+.test-button:hover {
+    background-color: #2980b9;
+}
+
+.parties-button {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+.parties-button:hover {
+    background-color: #c0392b;
+}
+
+/* Footer stili */
+footer {
+    position: absolute;
+    bottom: 1em;
+    width: 100%;
+}
+
+footer p {
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Test sayfası ve butonları için stiller */
+.test-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.question-card {
+    background-color: rgba(44, 62, 80, 0.9);
+    padding: 3em 4em;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    max-width: 800px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+}
+
+#question-counter {
+    position: absolute;
+    top: 1.5em;
+    left: 2em;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+#question-text {
+    font-size: 1.8em;
+    margin-bottom: 2em;
+    color: #fff;
+    min-height: 50px;
+}
+
+.answer-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5em;
+    margin-bottom: 2em;
+}
+
+.answer-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 2px solid transparent;
+}
+
+.answer-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+/* Seçili butona kenarlık ekleme */
+.answer-btn.selected {
+    border: 3px solid #f1c40f;
+    transform: scale(1.05);
+}
+
+/* Renk kodlaması */
+.answer-btn[data-value="-2"] { background-color: #c0392b; }
+.answer-btn[data-value="-1"] { background-color: #e74c3c; }
+.answer-btn[data-value="0"]  { background-color: #bdc3c7; }
+.answer-btn[data-value="1"]  { background-color: #2ecc71; }
+.answer-btn[data-value="2"]  { background-color: #27ae60; }
+
+.answer-btn i {
+    color: #fff;
+}
+
+/* Navigasyon butonu stilleri */
+.nav-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+}
+
+#prev-btn {
+    padding: 0.8em 2em;
+    background-color: #34495e;
+    color: #fff;
+    border: 2px solid #5d6d7e;
+    border-radius: 50px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#prev-btn:hover {
+    background-color: #5d6d7e;
+}
+
+/* Sonuç sayfası için özel stiller */
+.results-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em 1em; /* Yanlardan boşluk ekledim */
+    min-height: 100vh;
+    overflow-y: auto;
+    width: 100%; /* Konteynerin tam genişlikte olmasını sağlar */
+}
+
+.results-card {
+    background-color: rgba(44, 62, 80, 0.9);
+    padding: 3em 4em;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    max-width: 1200px; /* Maksimum genişliği daha da artırdım */
+    width: 90%;
+    text-align: center;
+    box-sizing: border-box; /* Padding dahil genişlik hesaplaması */
+}
+
+/* İki sütunlu sonuç düzeni */
+.results-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3em;
+    width: 100%;
+}
+
+@media (max-width: 1000px) { /* Tablet boyutları için ayar */
+    .results-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.compass-column, .results-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.compass-column {
+    position: relative;
+}
+
+/* Siyasi pusulanın ana kabı */
+.political-compass {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    border: 2px solid #000;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    overflow: hidden;
+}
+
+/* Pusula içindeki başlıklar */
+.compass-axis-label {
+    position: absolute;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #000;
+    text-shadow: 1px 1px 2px #fff;
+    z-index: 10;
+}
+
+.top-label {
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.bottom-label {
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.left-label {
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.right-label {
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Kareler ve ızgara */
+.quadrant {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    border: 1px solid #000;
+}
+.quadrant:nth-child(1) { background-color: #c0392b; }
+.quadrant:nth-child(2) { background-color: #3498db; }
+.quadrant:nth-child(3) { background-color: #27ae60; }
+.quadrant:nth-child(4) { background-color: #8e44ad; }
+
+.quadrant > div {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Eksen çizgileri */
+.political-compass::before,
+.political-compass::after {
+    content: '';
+    position: absolute;
+    background-color: #000;
+    z-index: 1;
+}
+.political-compass::before {
+    width: 100%;
+    height: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.political-compass::after {
+    width: 2px;
+    height: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.user-dot {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #e74c3c;
+    border: 2px solid #000;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    box-shadow: 0 0 10px rgba(241, 196, 15, 0.7);
+    transition: all 0.5s ease-in-out;
+}
+
+/* Eksen çubukları ve sonuçları */
+.results-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    margin-bottom: 2em;
+}
+
+.axis-result {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.axis-title {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    color: #fff;
+}
+
+.result-label {
+    font-size: 1.6em;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    color: #f1c40f;
+}
+
+.score-bar {
+    width: 100%;
+    height: 10px;
+    background-color: #5d6d7e;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.score-line {
+    height: 100%;
+    position: absolute;
+    left: 0;
+    transition: width 0.5s ease-in-out, background-color 0.5s ease;
+}
+
+/* Parti sonuçları bölümü */
+.party-results-container {
+    margin-top: 3em;
+    width: 100%;
+    text-align: left;
+}
+
+.party-results-container h2 {
+    font-size: 1.8em;
+    margin-bottom: 1em;
+    color: #f1c40f;
+    text-align: center;
+}
+
+.party-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.party-list li {
+    background-color: rgba(52, 73, 94, 0.7);
+    padding: 1.2em 2em;
+    margin-bottom: 1em;
+    border-radius: 10px;
+    font-size: 1.2em;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.party-list li:hover {
+    background-color: rgba(52, 73, 94, 0.9);
+}
+
+.party-list li strong {
+    color: #fff;
+}
+
+.party-result-label {
+    font-weight: bold;
+}
+
+.distance-label {
+    color: #fff;
+    font-weight: normal;
+}
+
+/* Sonuç sayfası buton grubu */
+.results-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1.5em;
+    margin-top: 2em;
+}
+
+.download-button {
+    background-color: #f39c12;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.download-button:hover {
+    background-color: #e67e22;
+}
+
+.retake-button {
+    background-color: #3498db;
+    color: #fff;
+    text-decoration: none;
+    padding: 1em 2.5em;
+    border-radius: 50px;
+    font-size: 1.1em;
+    font-weight: 700;
+    display: inline-block;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.retake-button:hover {
+    transform: translateY(-5px);
+    background-color: #2980b9;
+}
+
+
+/* Responsive tasarım */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.5em;
+    }
+
+    .card, .question-card, .results-card {
+        padding: 2em;
+    }
+
+    .button-container, .answer-buttons {
+        flex-direction: column;
+        gap: 1em;
+    }
+}
