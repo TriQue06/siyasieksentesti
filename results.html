@@ -42,7 +42,7 @@
                     </div>
 
                     <div class="axis-result">
-                        <span class="axis-title">Liberal / Otokrat</span>
+                        <span class="axis-title">Özgürlük / Otokrasi</span>
                         <p id="libotok-result" class="result-label">...</p>
                         <div class="score-bar">
                             <div id="libotok-score-line" class="score-line"></div>
@@ -50,7 +50,7 @@
                     </div>
 
                     <div class="axis-result">
-                        <span class="axis-title">İlerici / Muhafazakâr</span>
+                        <span class="axis-title">İlericilik / Muhafazakârlık</span>
                         <p id="ilericimuhafazakar-result" class="result-label">...</p>
                         <div class="score-bar">
                             <div id="ilericimuhafazakar-score-line" class="score-line"></div>
@@ -58,7 +58,7 @@
                     </div>
 
                     <div class="axis-result">
-                        <span class="axis-title">Küreselci / Milliyetçi</span>
+                        <span class="axis-title">Küreselcilik / Milliyetçilik</span>
                         <p id="kurmil-result" class="result-label">...</p>
                         <div class="score-bar">
                             <div id="kurmil-score-line" class="score-line"></div>
@@ -66,10 +66,10 @@
                     </div>
 
                     <div class="axis-result">
-                        <span class="axis-title">Federal / Üniter</span>
-                        <p id="feduni-result" class="result-label">...</p>
+                        <span class="axis-title">Ünitercilik / Federalizm</span>
+                        <p id="unifed-result" class="result-label">...</p>
                         <div class="score-bar">
-                            <div id="feduni-score-line" class="score-line"></div>
+                            <div id="unifed-score-line" class="score-line"></div>
                         </div>
                     </div>
                 </div>
@@ -90,63 +90,75 @@
 
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 <script>
-    // URL'den gelen parametreleri (puanları) al
+    const maxScore = 16;
+
+    // Puan aralıklarını ve karşılık gelen etiketleri basit bir nesnede tut
+    const labels = {
+        solsag: [
+            { min: 15, max: maxScore, label: "Klasik Liberalizm" },
+            { min: 4, max: 15, label: "Liberalizm" },
+            { min: -4, max: 4, label: "Karma Ekonomi" },
+            { min: -15, max: -4, label: "Sosyal Demokrasi" },
+            { min: -maxScore, max: -15, label: "Sosyalizm" }
+        ],
+        libotok: [
+            { min: 15, max: maxScore, label: "Anarşizm" },
+            { min: 4, max: 15, label: "Özgürlükçülük" },
+            { min: -4, max: 4, label: "Hibrit Rejim" },
+            { min: -15, max: -4, label: "Otoriterlik" },
+            { min: -maxScore, max: -15, label: "Totalitarizm" }
+        ],
+        ilericimuhafazakar: [
+            { min: 10, max: maxScore, label: "Teokrasi" },
+            { min: -10, max: 10, label: "Laiklik" },
+            { min: -maxScore, max: -10, label: "Din Karşıtlığı (Antiteist)" }
+        ],
+        kurmil: [
+            { min: 10, max: maxScore, label: "Küreselcilik" },
+            { min: -10, max: 10, label: "Enternasyonalizm" },
+            { min: -maxScore, max: -10, label: "Milliyetçilik" }
+        ],
+        unifed: [
+            { min: 10, max: maxScore, label: "Konfederasyonculuk" },
+            { min: -10, max: 10, label: "Adem-i Merkeziyetçilik" },
+            { min: -maxScore, max: -10, label: "Ünitercilik" }
+        ]
+    };
+
     function getUrlParams() {
         const params = new URLSearchParams(window.location.search);
         return {
-            solsag: parseInt(params.get('solsag')),
-            libotok: parseInt(params.get('libotok')),
-            ilericimuhafazakar: parseInt(params.get('ilericimuhafazakar')),
-            kurmil: parseInt(params.get('kurmil')),
-            feduni: parseInt(params.get('feduni'))
+            solsag: parseFloat(params.get('solsag')),
+            libotok: parseFloat(params.get('libotok')),
+            ilericimuhafazakar: parseFloat(params.get('ilericimuhafazakar')),
+            kurmil: parseFloat(params.get('kurmil')),
+            unifed: parseFloat(params.get('unifed'))
         };
     }
 
-    // Her eksen için puana karşılık gelen etiketi belirle
+    // Basitleştirilmiş yeni getLabel fonksiyonu
     function getLabel(score, axis) {
-        if (axis === 'solsag') {
-            if (score >= 9) return "Klasik Liberalizm";
-            if (score >= 3 && score <= 8) return "Liberalizm";
-            if (score >= -2 && score <= 2) return "Karma Ekonomi";
-            if (score >= -8 && score <= -3) return "Sosyal Demokrasi";
-            if (score <= -9) return "Sosyalizm";
-        }
-        if (axis === 'libotok') {
-            if (score >= 9) return "Anarşizm";
-            if (score >= 3 && score <= 8) return "Özgürlükçülük";
-            if (score >= -2 && score <= 2) return "Hibrit Rejim";
-            if (score >= -8 && score <= -3) return "Otoriterlik";
-            if (score <= -9) return "Totalitarizm";
-        }
-        if (axis === 'ilericimuhafazakar') {
-            if (score >= 5) return "Teokrasi";
-            if (score >= -4 && score <= 4) return "Laiklik";
-            if (score <= -5) return "Din Karşıtlığı (Antiteist)";
-        }
-        if (axis === 'kurmil') {
-            if (score >= 5) return "Küreselcilik";
-            if (score >= -4 && score <= 4) return "Enternasyonalizm";
-            if (score <= -5) return "Milliyetçilik";
-        }
-        if (axis === 'feduni') {
-            if (score >= 5) return "Konfederasyonculuk";
-            if (score >= -4 && score <= 4) return "Federal Cumhuriyetçilik";
-            if (score <= -5) return "Ünitercilik";
+        if (score === null || isNaN(score)) return "Belirlenemedi";
+
+        // Puan aralıklarını ters sırada kontrol et, en büyük aralıktan başlayarak
+        const sortedLabels = [...labels[axis]].sort((a, b) => b.min - a.min);
+
+        for (const range of sortedLabels) {
+            if (score >= range.min && score <= range.max) {
+                return range.label;
+            }
         }
         return "Belirlenemedi";
     }
 
-    // Puan çubuklarını yeni renk şemalarına göre güncelle
     function updateScoreBars(scores) {
-        const maxScore = 12; // Yeni puan ölçeği
-        const axes = ['solsag', 'libotok', 'ilericimuhafazakar', 'kurmil', 'feduni'];
-
+        const axes = ['solsag', 'libotok', 'ilericimuhafazakar', 'kurmil', 'unifed'];
         const colorSchemes = {
             solsag: { start: 'rgb(255, 0, 0)', end: 'rgb(0, 0, 255)' },
             libotok: { start: 'rgb(0, 0, 255)', end: 'rgb(255, 0, 0)' },
             ilericimuhafazakar: { start: 'rgb(128, 0, 128)', end: 'rgb(0, 128, 0)' },
             kurmil: { start: 'rgb(255, 0, 0)', end: 'rgb(0, 0, 255)' },
-            feduni: { start: 'rgb(0, 128, 0)', end: 'rgb(255, 255, 0)' }
+            unifed: { start: 'rgb(0, 128, 0)', end: 'rgb(255, 255, 0)' }
         };
 
         function interpolateColor(color1, color2, factor) {
@@ -162,7 +174,6 @@
 
             const scoreLine = document.getElementById(`${axis}-score-line`);
             const scoreFactor = (score + maxScore) / (2 * maxScore);
-
             const startColor = colorSchemes[axis].start;
             const endColor = colorSchemes[axis].end;
             const interpolatedColor = interpolateColor(startColor, endColor, scoreFactor);
@@ -172,15 +183,17 @@
         });
     }
 
-    // 2D Pusula çizimi ve kullanıcı noktasını yerleştirme
     function drawPoliticalCompass(scores) {
-        const compass = document.querySelector('.political-compass');
         const userDot = document.getElementById('user-position-dot');
-        const maxScore = 12; // Yeni puan ölçeği
-        const totalSize = 300; // Pusula karelerinin toplam genişliği
+        const totalSize = 300;
 
-        // Pusula Y ekseni için Liberal/Otokrat puanını kullan
-        // Y ekseni görseldeki gibi tersine çevrilmiş
+        if (scores.solsag === null || isNaN(scores.solsag) || scores.ilericimuhafazakar === null || isNaN(scores.ilericimuhafazakar)) {
+            userDot.style.display = 'none';
+            return;
+        }
+
+        userDot.style.display = 'block';
+
         const xPos = (scores.solsag + maxScore) / (2 * maxScore) * totalSize;
         const yPos = (scores.ilericimuhafazakar - maxScore) / (-2 * maxScore) * totalSize;
 
@@ -188,26 +201,24 @@
         userDot.style.top = `${yPos}px`;
     }
 
-    // VERECEĞİN PARTİ PUANLARI VE RENKLERİ BURADA GİRİLECEK
     const partyScores = [
-        { name: 'Adalet ve Kalkınma Partisi', solsag: 0, libotok: -9, ilericimuhafazakar: 9, kurmil: -9, feduni: 3, color: '#f8991d' },
-        { name: 'Milliyetçi Hareket Partisi', solsag: 0, libotok: -9, ilericimuhafazakar: 9, kurmil: -12, feduni: 3, color: '#8e1c4b' },
-        { name: 'Büyük Birlik Partisi', solsag: 0, libotok: -9, ilericimuhafazakar: 9, kurmil: -12, feduni: -3, color: '#ea2228' },
-        { name: 'Hür Dava Partisi', solsag: 6, libotok: -9, ilericimuhafazakar: 12, kurmil: -6, feduni: 12, color: '#00953b' },
-        { name: 'Cumhuriyet Halk Partisi', solsag: -3, libotok: 9, ilericimuhafazakar: -9, kurmil: 3, feduni: -9, color: '#e30613' },
-        { name: 'İYİ Parti', solsag: 6, libotok: 6, ilericimuhafazakar: -6, kurmil: 0, feduni: -9, color: '#3cb4e5' },
-        { name: 'Zafer Partisi', solsag: 0, libotok: 3, ilericimuhafazakar: -3, kurmil: -6, feduni: -12, color: '#414042' },
-        { name: 'Halkların Eşitlik ve Demokrasi Partisi', solsag: -6, libotok: 9, ilericimuhafazakar: -9, kurmil: 9, feduni: 12, color: '#773e90' },
-        { name: 'Türkiye İşçi Partisi', solsag: -9, libotok: 9, ilericimuhafazakar: -12, kurmil: 6, feduni: 9, color: '#ad1766' },
-        { name: 'Yeniden Refah Partisi', solsag: 0, libotok: -6, ilericimuhafazakar: 12, kurmil: -12, feduni: -3, color: '#467d18' },
-        { name: 'Anahtar Parti', solsag: 3, libotok: -3, ilericimuhafazakar: 9, kurmil: -7, feduni: -9, color: '#002157' },
-        { name: 'Demokrasi ve Atılım Partisi', solsag: 9, libotok: 9, ilericimuhafazakar: 0, kurmil: 9, feduni: 0, color: '#0069a7' },
-        { name: 'Gelecek Partisi', solsag: 9, libotok: 6, ilericimuhafazakar: 3, kurmil: 6, feduni: -6, color: '#0d6e4a' },
-        { name: 'Saadet Partisi', solsag: 0, libotok: -3, ilericimuhafazakar: 9, kurmil: -12, feduni: -3, color: '#c16d4f' },
-        { name: 'Bağımsız Türkiye Partisi', solsag: 0, libotok: 0, ilericimuhafazakar: 6, kurmil: -9, feduni: -12, color: '#c80008' }
+        { name: 'Adalet ve Kalkınma Partisi', solsag: 0, libotok: -12, ilericimuhafazakar: 12, kurmil: -12, unifed: 4, color: '#f8991d' },
+        { name: 'Milliyetçi Hareket Partisi', solsag: 0, libotok: -12, ilericimuhafazakar: 12, kurmil: -16, unifed: 4, color: '#8e1c4b' },
+        { name: 'Büyük Birlik Partisi', solsag: 0, libotok: -12, ilericimuhafazakar: 12, kurmil: -16, unifed: -4, color: '#ea2228' },
+        { name: 'Hür Dava Partisi', solsag: 8, libotok: -12, ilericimuhafazakar: 16, kurmil: -8, unifed: 16, color: '#00953b' },
+        { name: 'Cumhuriyet Halk Partisi', solsag: -4, libotok: 12, ilericimuhafazakar: -12, kurmil: 4, unifed: -12, color: '#e30613' },
+        { name: 'İYİ Parti', solsag: 8, libotok: 8, ilericimuhafazakar: -8, kurmil: 0, unifed: -12, color: '#3cb4e5' },
+        { name: 'Zafer Partisi', solsag: 0, libotok: 4, ilericimuhafazakar: -4, kurmil: -8, unifed: -16, color: '#414042' },
+        { name: 'Halkların Eşitlik ve Demokrasi Partisi', solsag: -8, libotok: 12, ilericimuhafazakar: -12, kurmil: 12, unifed: 16, color: '#773e90' },
+        { name: 'Türkiye İşçi Partisi', solsag: -12, libotok: 12, ilericimuhafazakar: -16, kurmil: 8, unifed: 12, color: '#ad1766' },
+        { name: 'Yeniden Refah Partisi', solsag: 0, libotok: -8, ilericimuhafazakar: 16, kurmil: -16, unifed: -4, color: '#467d18' },
+        { name: 'Anahtar Parti', solsag: 4, libotok: -4, ilericimuhafazakar: 12, kurmil: -8, unifed: -12, color: '#002157' },
+        { name: 'Demokrasi ve Atılım Partisi', solsag: 12, libotok: 12, ilericimuhafazakar: 0, kurmil: 12, unifed: 0, color: '#0069a7' },
+        { name: 'Gelecek Partisi', solsag: 12, libotok: 8, ilericimuhafazakar: 4, kurmil: 8, unifed: -8, color: '#0d6e4a' },
+        { name: 'Saadet Partisi', solsag: 0, libotok: -4, ilericimuhafazakar: 12, kurmil: -16, unifed: -4, color: '#c16d4f' },
+        { name: 'Bağımsız Türkiye Partisi', solsag: 0, libotok: 0, ilericimuhafazakar: 8, kurmil: -12, unifed: -16, color: '#c80008' }
     ];
 
-    // Partilere olan mesafeleri hesapla ve en yakın 3'ünü bul
     function calculatePartyDistances(userScores) {
         const distances = partyScores.map(party => {
             const distance = Math.sqrt(
@@ -215,15 +226,13 @@
                 Math.pow(userScores.libotok - party.libotok, 2) +
                 Math.pow(userScores.ilericimuhafazakar - party.ilericimuhafazakar, 2) +
                 Math.pow(userScores.kurmil - party.kurmil, 2) +
-                Math.pow(userScores.feduni - party.feduni, 2)
+                Math.pow(userScores.unifed - party.unifed, 2)
             );
             return { name: party.name, distance: distance, color: party.color };
         });
 
-        // En büyük mesafeyi bul
         const maxDistance = Math.max(...distances.map(d => d.distance));
 
-        // Mesafeleri yüzdelik skora dönüştür
         const scoresWithPercentage = distances.map(d => {
             const percentage = (1 - (d.distance / maxDistance)) * 100;
             return {
@@ -233,15 +242,13 @@
             };
         });
 
-        // Yüzdelik skora göre sırala (azalan) ve en yakın 3'ünü al
         scoresWithPercentage.sort((a, b) => b.percentage - a.percentage);
         return scoresWithPercentage.slice(0, 3);
     }
 
-    // En yakın partileri ekranda göster
     function displayPartyResults(topParties) {
         const partyList = document.getElementById('party-list');
-        partyList.innerHTML = ''; // Listeyi temizle
+        partyList.innerHTML = '';
         topParties.forEach(party => {
             const listItem = document.createElement('li');
             listItem.innerHTML = `<span class="party-result-label" style="color: ${party.color};">${party.name}</span> <span class="distance-label">Yakınlık Skoru: %${party.percentage}</span>`;
@@ -249,7 +256,6 @@
         });
     }
 
-    // Sonuçları PNG olarak indirme fonksiyonu
     function downloadResultsAsPng() {
         const elementToCapture = document.getElementById('results-card');
 
@@ -268,14 +274,13 @@
         });
     }
 
-    // Sayfa yüklendiğinde çalışacak ana fonksiyon
     function initializeResultsPage() {
         const scores = getUrlParams();
         document.getElementById('solsag-result').innerText = getLabel(scores.solsag, 'solsag');
         document.getElementById('libotok-result').innerText = getLabel(scores.libotok, 'libotok');
         document.getElementById('ilericimuhafazakar-result').innerText = getLabel(scores.ilericimuhafazakar, 'ilericimuhafazakar');
         document.getElementById('kurmil-result').innerText = getLabel(scores.kurmil, 'kurmil');
-        document.getElementById('feduni-result').innerText = getLabel(scores.feduni, 'feduni');
+        document.getElementById('unifed-result').innerText = getLabel(scores.unifed, 'unifed');
 
         updateScoreBars(scores);
         drawPoliticalCompass(scores);
@@ -283,7 +288,6 @@
         const topParties = calculatePartyDistances(scores);
         displayPartyResults(topParties);
 
-        // İndirme butonuna event listener ekle
         document.getElementById('download-btn').addEventListener('click', downloadResultsAsPng);
     }
 

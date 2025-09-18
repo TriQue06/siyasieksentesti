@@ -2,42 +2,42 @@ const questions = [
     {
         question: "Fakirlere kaynak sağlamak için zenginlerden daha yüksek vergi alınmalıdır.",
         axis: "solsag",
-        effect: 1
+        effect: -1
     },
     {
         question: "Devletin, tüketiciyi korumak için ekonomiye müdahale etmesi gerekir.",
         axis: "solsag",
-        effect: 1
+        effect: -1
     },
     {
         question: "Eğitim, sağlık gibi alanlar vergiler ile herkese ücretsiz hâle getirilmelidir.",
         axis: "solsag",
-        effect: 1
+        effect: -1
     },
     {
         question: "TRT'nin vergilerle ayakta tutulması, devletin kendi televizyonunun olması için önemlidir.",
         axis: "solsag",
-        effect: 1
+        effect: -1
     },
     {
         question: "Şirket kurma ve girişim yapma kolaylaştırılmalıdır.",
         axis: "solsag",
-        effect: -1
+        effect: 1
     },
     {
         question: "Vergi, devletin para koparma yöntemidir.",
         axis: "solsag",
-        effect: -1
+        effect: 1
     },
     {
         question: "Rekabet ortamı, ürünlerin daha kaliteli olması için itici bir güçtür.",
         axis: "solsag",
-        effect: -1
+        effect: 1
     },
     {
         question: "Piyasalar ne kadar özgürse insanlar da o kadar özgürdür.",
         axis: "solsag",
-        effect: -1
+        effect: 1
     },
     {
         question: "Belirli uyuşturucu türleri yasal hale getirilmeli ve suç olmamalıdır.",
@@ -140,7 +140,7 @@ const questions = [
         effect: 1
     },
     {
-        question: "Ulusal çıkarlar her ne olursa olsun, uluslararası beraberliklerden daha öncelikli olmalıdır.",
+        question: "Uluslararası birlikler kültürümüzü zedeler, Türkiye uluslararası alanda tek başına yol almalıdır.",
         axis: "kurmil",
         effect: -1
     },
@@ -160,43 +160,43 @@ const questions = [
         effect: -1
     },
     {
-        question: "Kürt sorunu vardır ve siyaset alanında çözüme kavuşturulmalıdır.",
-        axis: "feduni",
+        question: "Türkiye'de uygulanacak bir eyalet sistemi, sorunları çözebilir.",
+        axis: "unifed",
         effect: 1
     },
     {
         question: "Yerel yönetimlerin, daha fazla yetkiye sahip olması gereklidir.",
-        axis: "feduni",
+        axis: "unifed",
         effect: 1
     },
     {
-        question: "Kürtçe tabelalar aşırıya kaçmadığı sürece benim için problem değildir.",
-        axis: "feduni",
+        question: "Kürtçe veya Arapça, Kürtlerin veya Arapların çoğunluk olduğu bölgelerde tabelalarda vb. yerlerde kullanılabilir.",
+        axis: "unifed",
         effect: 1
     },
     {
         question: "Federal eyalet sistemi daha kapsayıcı bir devlet yönetim biçimidir.",
-        axis: "feduni",
+        axis: "unifed",
         effect: 1
     },
     {
         question: "Şehirler ve kültürler arası farklılıklar ne olursa olsun her yerde kurallar adaptasyon geçirmeden birebir uygulanmalıdır.",
-        axis: "feduni",
+        axis: "unifed",
         effect: -1
     },
     {
         question: "Türklük, tüm vatandaşların kullanması gereken zorunlu üst kimliktir.",
-        axis: "feduni",
+        axis: "unifed",
         effect: -1
     },
     {
         question: "Türkçe dışında hiçbir dil resmi devlet dairelerinde kabul edilmemelidir.",
-        axis: "feduni",
+        axis: "unifed",
         effect: -1
     },
     {
         question: "Türkiye'de Türk Bayrağı dışında herhangi bir bayrak sallamak suç teşkil etmelidir.",
-        axis: "feduni",
+        axis: "unifed",
         effect: -1
     }
 ];

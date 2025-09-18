@@ -6,7 +6,7 @@ let solsagScore = 0;
 let libotokScore = 0;
 let ilericimuhafazakarScore = 0;
 let kurmilScore = 0;
-let feduniScore = 0;
+let unifedScore = 0;
 
 const questionTextElement = document.getElementById('question-text');
 const answerButtonsContainer = document.querySelector('.answer-buttons');
@@ -64,12 +64,12 @@ function calculateAndRedirect() {
             ilericimuhafazakarScore += scoreToAdd;
         } else if (question.axis === 'kurmil') {
             kurmilScore += scoreToAdd;
-        } else if (question.axis === 'feduni') {
-            feduniScore += scoreToAdd;
+        } else if (question.axis === 'unifed') {
+            unifedScore += scoreToAdd;
         }
     });
 
-    window.location.href = `results.html?solsag=${solsagScore}&libotok=${libotokScore}&ilericimuhafazakar=${ilericimuhafazakarScore}&kurmil=${kurmilScore}&feduni=${feduniScore}`;
+    window.location.href = `results.html?solsag=${solsagScore}&libotok=${libotokScore}&ilericimuhafazakar=${ilericimuhafazakarScore}&kurmil=${kurmilScore}&unifed=${unifedScore}`;
 }
 
 function prevQuestion() {
