@@ -1,6 +1,11 @@
 const questions = [
     {
-        question: "Ekonomik eşitsizliği azaltmak için zenginlerden daha yüksek vergi alınmalıdır.",
+        question: "Fakirlere kaynak sağlamak için zenginlerden daha yüksek vergi alınmalıdır.",
+        axis: "solsag",
+        effect: 1
+    },
+    {
+        question: "Devletin, tüketiciyi korumak için ekonomiye müdahale etmesi gerekir.",
         axis: "solsag",
         effect: 1
     },
@@ -15,7 +20,7 @@ const questions = [
         effect: 1
     },
     {
-        question: "Şirket kurma ve girişmde bulunma kolaylaştırılmalıdır.",
+        question: "Şirket kurma ve girişim yapma kolaylaştırılmalıdır.",
         axis: "solsag",
         effect: -1
     },
@@ -28,6 +33,16 @@ const questions = [
         question: "Rekabet ortamı, ürünlerin daha kaliteli olması için itici bir güçtür.",
         axis: "solsag",
         effect: -1
+    },
+    {
+        question: "Piyasalar ne kadar özgürse insanlar da o kadar özgürdür.",
+        axis: "solsag",
+        effect: -1
+    },
+    {
+        question: "Belirli uyuşturucu türleri yasal hale getirilmeli ve suç olmamalıdır.",
+        axis: "libotok",
+        effect: 1
     },
     {
         question: "Devletin çeşitli sitelere ya da doğrudan İnternet'e bant daraltması uygulaması kabul edilemez.",
@@ -60,6 +75,16 @@ const questions = [
         effect: -1
     },
     {
+        question: "Devletin işleyişi için bir noktada otorite gereklidir.",
+        axis: "libotok",
+        effect: -1
+    },
+    {
+        question: "Eşcinsel bireyler ve hakları vardır ve savunulmalıdır.",
+        axis: "ilericimuhafazakar",
+        effect: -1
+    },
+    {
         question: "Devlet, tüm vatandaşlar için eşit mesafede durmalı ve dinlerüstü bir konumda olmalıdır.",
         axis: "ilericimuhafazakar",
         effect: -1
@@ -75,18 +100,28 @@ const questions = [
         effect: -1
     },
     {
-        question: "Dinler bizi bir arada tutar, din olmadan toplumsal çöküş hızlanır.",
+        question: "Din olmadan toplumsal çöküş hızlanır.",
         axis: "ilericimuhafazakar",
         effect: 1
     },
     {
-        question: "Din olmadan ahlak olmaz, dinsizler genel anlamda ahlaksız insanlarla paralellik gösterir.",
+        question: "Din Kültürü dersi zorunlu olmalı, öğrencilere İslam aşılanmalıdır.",
         axis: "ilericimuhafazakar",
         effect: 1
     },
     {
-        question: "Erkeklerin kolye/küpe gibi aksesuarları takması ya da kızların açık giyinmesi kesinlikle denetim altına alınmalı.",
+        question: "Erkeklerin kolye/küpe gibi aksesuarları takması ya da kızların açık giyinmesi kesinlikle çok aşırıya kaçtı.",
         axis: "ilericimuhafazakar",
+        effect: 1
+    },
+    {
+        question: "Kadınlar ile erkekler asla tam anlamıyla eşit olamaz, olmamalıdır.",
+        axis: "ilericimuhafazakar",
+        effect: 1
+    },
+    {
+        question: "Kültürü fark etmeksizin her insana eşit davranılmalıdır.",
+        axis: "kurmil",
         effect: 1
     },
     {
@@ -120,6 +155,16 @@ const questions = [
         effect: -1
     },
     {
+        question: "Mülteciler, kim olduğuna bakılmaksızın sınır dışı edilmelidir.",
+        axis: "kurmil",
+        effect: -1
+    },
+    {
+        question: "Kürt sorunu vardır ve siyaset alanında çözüme kavuşturulmalıdır.",
+        axis: "feduni",
+        effect: 1
+    },
+    {
         question: "Yerel yönetimlerin, daha fazla yetkiye sahip olması gereklidir.",
         axis: "feduni",
         effect: 1
@@ -146,6 +191,11 @@ const questions = [
     },
     {
         question: "Türkçe dışında hiçbir dil resmi devlet dairelerinde kabul edilmemelidir.",
+        axis: "feduni",
+        effect: -1
+    },
+    {
+        question: "Türkiye'de Türk Bayrağı dışında herhangi bir bayrak sallamak suç teşkil etmelidir.",
         axis: "feduni",
         effect: -1
     }
